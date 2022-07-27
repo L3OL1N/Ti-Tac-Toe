@@ -32,12 +32,13 @@ function checkWinner(cell,currentTurn){
     const combination =[];
     const arr = Array.from(winCombination);
     const wrapCells = cell.parentNode.children;
-    for(let i = 0; i < 8; i++){
+    for(let i = 0; i < 9; i++){
         if(wrapCells[i].innerHTML === currentTurn){
             let found = wrapCells[i].dataset.item;
             combination.push(found);
         }
     }
+    console.log(combination);
     return arrayEquals(combination,winCombination);
 
 }

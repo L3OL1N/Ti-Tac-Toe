@@ -18,4 +18,16 @@ body #wrap .block {
   font-size: 36px;
   text-align: center;
   line-height: 100px;
+}
+body #wrap .block:nth-child(7), body #wrap .block:nth-child(8), body #wrap .block:nth-child(9) {
+  border-top: 1px solid white;
+}
+body #wrap .block:nth-child(n+1):nth-child(-n+3) {
+  border-bottom: 1px solid white;
+}
+body #wrap .block:nth-child(3n+1) {
+  border-left: 1px solid white;
+}
+body #wrap .block:nth-child(3n) {
+  border-right: 1px solid white;
 }/*# sourceMappingURL=style.css.map */
