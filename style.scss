@@ -4,4 +4,20 @@ body{
     header{
         text-align: center;
     }
+    #wrap{
+        display: grid;
+        grid-template-areas: "seven eight nine"
+                             "four five six"
+                             "one two three";
+        justify-content: center;
+        margin: 0 auto;
+        .block{
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            font-size: 36px;
+            text-align: center;
+            line-height: 100px;
+        }                    
+    }
 }
