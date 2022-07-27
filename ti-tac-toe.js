@@ -21,8 +21,7 @@ function handleClick(e){
     const currentTurn = draw(turn)
     placeMark(cell,currentTurn);
     circle = !circle;
-    checkWinner(cell,currentTurn);
-    console.log(checkWinner(cell,currentTurn));
+    if(checkWinner(cell,currentTurn)) console.log(`${currentTurn} win!!!`);
 }
 
 function placeMark(cell,resalt){
@@ -39,20 +38,17 @@ function checkWinner(cell,currentTurn){
             combination.push(found);
         }
     }
-    console.log(combination.every());
+    return arrayEquals(combination,winCombination);
 
-    return check(winCombination,["1","2","3"]);
 }
-function check(arr, val) {
-    return arr.some(function(arrVal) {
-      return val === arrVal;
-    });
-}
-function checkWin(){
-    return winCombination.some(combination =>{
-        return combination.every
-    })
-}
+function arrayEquals(a, b) {
+    for(let i = 0; i < b.length; i++){
+        if(Array.isArray(a) && Array.isArray(b[i]) && a.length === b[i].length){
+           if(a.every((val, index) => val === b[i][index])) return true;
+        }      
+    }
+    return false;
+  };
 
 const blockElement = document.querySelectorAll(".block");
 //main event listener
