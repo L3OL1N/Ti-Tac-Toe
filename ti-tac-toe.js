@@ -19,9 +19,13 @@ function handleClick(e){
     const cell = e.target;
     const turn = !circle? circle:!circle;
     const currentTurn = draw(turn)
+    const winDiv = document.getElementById("winner");
     placeMark(cell,currentTurn);
     circle = !circle;
-    if(checkWinner(cell,currentTurn)) console.log(`${currentTurn} win!!!`);
+    if(checkWinner(cell,currentTurn)) {
+        winDiv.children[0].innerHTML = `${currentTurn} win !!!`
+        winDiv.style.display = "flex";
+    }
 }
 
 function placeMark(cell,resalt){

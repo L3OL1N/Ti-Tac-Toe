@@ -5,13 +5,16 @@ body {
 body header {
   text-align: center;
 }
-body #wrap {
+body main {
+  position: relative;
+}
+body main #wrap {
   display: grid;
   grid-template-areas: "seven eight nine" "four five six" "one two three";
   justify-content: center;
   margin: 0 auto;
 }
-body #wrap .block {
+body main #wrap .block {
   border: 1px solid black;
   width: 100px;
   height: 100px;
@@ -19,15 +22,30 @@ body #wrap .block {
   text-align: center;
   line-height: 100px;
 }
-body #wrap .block:nth-child(7), body #wrap .block:nth-child(8), body #wrap .block:nth-child(9) {
+body main #wrap .block:nth-child(7), body main #wrap .block:nth-child(8), body main #wrap .block:nth-child(9) {
   border-top: 1px solid white;
 }
-body #wrap .block:nth-child(n+1):nth-child(-n+3) {
+body main #wrap .block:nth-child(n+1):nth-child(-n+3) {
   border-bottom: 1px solid white;
 }
-body #wrap .block:nth-child(3n+1) {
+body main #wrap .block:nth-child(3n+1) {
   border-left: 1px solid white;
 }
-body #wrap .block:nth-child(3n) {
+body main #wrap .block:nth-child(3n) {
   border-right: 1px solid white;
+}
+body main #winner {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: -8px;
+  left: 385px;
+  width: 320px;
+  height: 320px;
+  background-color: lightgray;
+  opacity: 0.8;
+  text-align: center;
+  font-size: 36px;
 }/*# sourceMappingURL=style.css.map */
