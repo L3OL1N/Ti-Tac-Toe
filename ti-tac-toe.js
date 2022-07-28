@@ -43,17 +43,25 @@ function checkWinner(cell,currentTurn){
         }
     }
     console.log(combination);
-    return arrayEquals(combination,winCombination);
+    return combiCheck(combination);
 
 }
-function arrayEquals(a, b) {
-    for(let i = 0; i < b.length; i++){
-        if(Array.isArray(a) && Array.isArray(b[i]) && a.length === b[i].length){
-           if(a.every((val, index) => val === b[i][index])) return true;
-        }      
-    }
+function combiCheck(arr) {
+    const array = arr;
+    //check diagonal
+    if((array.includes("1")&&array.includes("5")&&array.includes("9"))
+       ||(array.includes("3")&&array.includes("5")&&array.includes("7"))) return true;
+    //check row
+    if((array.includes("1")&&array.includes("2")&&array.includes("3"))
+    ||(array.includes("4")&&array.includes("5")&&array.includes("6"))
+    ||(array.includes("7")&&array.includes("8")&&array.includes("9"))) return true;
+    //check column
+    if((array.includes("1")&&array.includes("4")&&array.includes("7"))
+    ||(array.includes("2")&&array.includes("5")&&array.includes("8"))
+    ||(array.includes("3")&&array.includes("6")&&array.includes("9"))) return true;
+    //none
     return false;
-  };
+};
 
 const blockElement = document.querySelectorAll(".block");
 //main event listener
