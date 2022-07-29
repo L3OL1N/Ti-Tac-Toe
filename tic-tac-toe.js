@@ -1,19 +1,38 @@
 let circle;
 
 function draw(turn){
-    let resalt;
     let OandX = ["O","X"];
     return resalt = (turn === circle? OandX[0]:OandX[1]);
 }
-
+function swapTurn(){
+    return circle = !circle;
+}
+function CurrentTurn(){
+    const turn = !circle? circle:!circle;
+    return draw(turn);
+}
+function basicAi(cell,currentTurn){
+    const emptyCell = [...cell.parentNode.children].filter(cell=>{
+        return cell.innerHTML === "";
+    })
+    const rand = Math.floor(Math.random()*emptyCell.length)
+    let next = emptyCell[rand];
+    placeMark(next,currentTurn);
+    swapTurn();
+}
 function handleClick(e){
     const cell = e.target;
-    const turn = !circle? circle:!circle;
-    const currentTurn = draw(turn)
+    let currentTurn = CurrentTurn();
     const winDiv = document.getElementById("winner");
     placeMark(cell,currentTurn);
-    console.log(isDraw(cell));
-    circle = !circle;
+
+    swapTurn();
+    
+    if(!isDraw(cell) && !checkWinner(cell,currentTurn)){
+        currentTurn = CurrentTurn();  
+        basicAi(cell,currentTurn);
+    } 
+    
     if(isDraw(cell) || checkWinner(cell,currentTurn)) {
         if(isDraw(cell)) winDiv.children[0].innerHTML = `Draw !!!`;
         if(checkWinner(cell,currentTurn)) winDiv.children[0].innerHTML = `${currentTurn} win !!!`;
@@ -22,10 +41,9 @@ function handleClick(e){
     }
 }
 
-function placeMark(cell,resalt){
-    cell.innerHTML = resalt;
+function placeMark(cell,currentTurn){
+    cell.innerHTML = currentTurn;
 }
-
 function checkWinner(cell,currentTurn){
     const combination =[];
     const wrapCells = cell.parentNode.children;
