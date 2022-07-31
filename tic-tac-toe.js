@@ -166,10 +166,18 @@ let active = {
     Basic:false,
     Best:false
 };
+// ai select
 function aihandle(e){
     const btn = e.target;
     const liBtn = btn.parentNode.querySelectorAll("li");
     if(btn.nodeName.match("LI")) {
+        for(let el in blockElement){
+            if(el.match(/\d/)){
+                console.log(blockElement[el]);
+                blockElement[el].innerHTML = "";
+            }
+        }
+
         const select = btn.id;
         active = {
             Player:false,
@@ -204,7 +212,7 @@ const main=(()=>{
     for(let i = 0; i < wrapDiv.childElementCount; i++){
         var id = wrapDiv.children[i].getAttribute("id");
         wrapDiv.children[i].style = "grid-area : "+id;
-        wrapDiv.children[i].addEventListener("click",handleClick,{ once:true});
+        wrapDiv.children[i].addEventListener("click",handleClick);
     };
     aiSelectBtn.addEventListener("click",aihandle)
 })();
