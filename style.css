@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Knewave&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Damion&family=Nosifer&display=swap");
 body {
   width: 80vw;
   margin: 0 auto;
@@ -18,7 +20,7 @@ body main #aiSelect {
 body main #aiSelect li {
   cursor: pointer;
   list-style: none;
-  margin: 10px;
+  margin: 20px 15px;
   border: 1px solid black;
   padding: 5px;
 }
@@ -31,14 +33,16 @@ body main #wrap {
   grid-template-areas: "seven eight nine" "four five six" "one two three";
   justify-content: center;
   margin: 0 auto;
+  margin-top: 10px;
 }
 body main #wrap .block {
   border: 1px solid black;
   width: 100px;
   height: 100px;
-  font-size: 36px;
+  font-size: 48px;
   text-align: center;
   line-height: 100px;
+  font-family: "Nosifer", cursive;
 }
 body main #wrap .block:nth-child(7), body main #wrap .block:nth-child(8), body main #wrap .block:nth-child(9) {
   border-top: 1px solid white;
@@ -58,12 +62,16 @@ body main #winner {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  top: 43px;
+  top: 73px;
   left: 385px;
   width: 320px;
   height: 320px;
   background-color: lightgray;
-  opacity: 0.8;
+  opacity: 0.9;
   text-align: center;
   font-size: 36px;
+}
+body main #winner h1 {
+  font-family: "Courgette", cursive;
+  color: darkblue;
 }/*# sourceMappingURL=style.css.map */

@@ -173,7 +173,6 @@ function aihandle(e){
     if(btn.nodeName.match("LI")) {
         for(let el in blockElement){
             if(el.match(/\d/)){
-                console.log(blockElement[el]);
                 blockElement[el].innerHTML = "";
             }
         }
