@@ -74,4 +74,10 @@ body main #winner {
 body main #winner h1 {
   font-family: "Courgette", cursive;
   color: darkblue;
+}
+body main svg {
+  display: none;
+  position: absolute;
+  top: 73px;
+  left: 388px;
 }/*# sourceMappingURL=style.css.map */
