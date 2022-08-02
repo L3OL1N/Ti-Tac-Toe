@@ -17,7 +17,6 @@ const main=(()=>{
         const emptyCell = [...cell.parentNode.children].filter(cell=>{
             return cell.innerHTML === "";
         })
-        console.log(emptyCell[0]);
         const rand = Math.floor(Math.random()*emptyCell.length);
         let next = emptyCell[rand];
         placeMark(next,currentTurn);
@@ -42,10 +41,10 @@ const main=(()=>{
         let huPlayer = "X";
         let aiPlayer = "O";
         let emptyIndex = cell.map((cell,index)=>cell===""?index:"").filter(String);
-        if(combiCheckForAi(cell,aiPlayer)) {
+        if(checkWinnerAi(cell,aiPlayer)) {
         return{ score: 10 };
         }; 
-        if(combiCheckForAi(cell,huPlayer))  { 
+        if(checkWinnerAi(cell,huPlayer))  { 
         return{ score: -10 }; 
         };
         if(emptyIndex.length === 0)  { 
@@ -87,22 +86,10 @@ const main=(()=>{
         }
         return moves[bestMove];
     }
-    function combiCheckForAi(arr,currentTurn) {
-        const array = arr.map((cell,index)=>cell===currentTurn?(index+1).toString():"").filter(String);
-        //check diagonal
-        if((array.includes("1")&&array.includes("5")&&array.includes("9"))
-        ||(array.includes("3")&&array.includes("5")&&array.includes("7"))) return true;
-        //check row
-        if((array.includes("1")&&array.includes("2")&&array.includes("3"))
-        ||(array.includes("4")&&array.includes("5")&&array.includes("6"))
-        ||(array.includes("7")&&array.includes("8")&&array.includes("9"))) return true;
-        //check column
-        if((array.includes("1")&&array.includes("4")&&array.includes("7"))
-        ||(array.includes("2")&&array.includes("5")&&array.includes("8"))
-        ||(array.includes("3")&&array.includes("6")&&array.includes("9"))) return true;
-        //none
-        return false;
-    };
+    function checkWinnerAi(cell,currentTurn){
+        const array = cell.map((cell,index)=>cell===currentTurn?(index+1).toString():"").filter(String);
+        return combiCheck(array);
+    }
     // handle
     function handleClick(e){
         const cell = e.target;
@@ -124,13 +111,12 @@ const main=(()=>{
             if(checkWinner(cell,currentTurn)) winDiv.children[0].innerHTML = `${currentTurn} win !!!`;
             winDiv.style.display = "flex";
             winDiv.addEventListener("click",()=> window.location.reload());
-            drawLine(cell,currentTurn);
+            if(checkWinner(cell,currentTurn)) drawLine(cell,currentTurn);
         }
     }
     function placeMark(cell,currentTurn){
         cell.innerHTML = currentTurn;
     }
-    
     function checkWinner(cell,currentTurn){
         const combination =[];
         const wrapCells = cell.parentNode.children;
@@ -163,7 +149,6 @@ const main=(()=>{
         const arr = [...cell.parentNode.children].map((cell,index)=>cell.innerHTML === currentTurn?index+1:"").filter(String)
         let start = arr[0];
         let end = arr[arr.length-1];
-        
         let linePoint={
             1 : {x:53,y:267},
             2 : {x:160,y:267},
@@ -175,8 +160,6 @@ const main=(()=>{
             8 : {x:160,y:53},
             9 : {x:267,y:53}
         }
-        console.log(linePoint[end].x)
-        console.log(linePoint[end].y)
         line.setAttribute("x1",linePoint[start].x);
         line.setAttribute("y1",linePoint[start].y);
         line.setAttribute("x2",linePoint[end].x);
@@ -231,10 +214,10 @@ const main=(()=>{
         };
     }
     const blockElement = document.querySelectorAll(".block");
-    //main event listener
-
     const wrapDiv = document.getElementById("wrap");
     const aiSelectBtn = document.getElementById("aiSelect");
+
+    //main event listener
     for(let i = 0; i < wrapDiv.childElementCount; i++){
         var id = wrapDiv.children[i].getAttribute("id");
         wrapDiv.children[i].style = "grid-area : "+id;
